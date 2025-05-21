@@ -1,0 +1,89 @@
+body {
+    background: linear-gradient(to bottom, #a5f5ff 0%, #74c4ec 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    background: #61bef4;
+    padding: 40px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    margin: 40px auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    font-size: 48px;
+    color: #222;
+    margin-bottom: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="datetime-local"],
+input[type="tel"],
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.caja-cc {
+    background-color: #ffeef2;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    color: #000;
+    font-size: 15px;
+}
+
+.tipo-linea {
+    display: block;
+    text-align: center;
+    font-style: italic;
+    margin-top: 20px;
+    color: #555;
+}
+
+.boton-enviar {
+    background-color: #a5f5ff 0%;
+    color: rgb(40, 101, 200);
+    font-size: 18px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.boton-enviar:hover {
+    background-color: #f2d2dc;
+}
+h6
+{
+    font-size: 17px;
+    color: #222;
+    font-family: 'Times New Roman', Times, serif
+}

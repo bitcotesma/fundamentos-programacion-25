@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='pag.css') }}">
+    
+    <title>Formulario de Turno</title>
+    <script>
+        function mostrarObraSocial(opcion) {
+            document.getElementById('obraSocialDetalle').style.display = (opcion.value === 'si') ? 'block' : 'none';
+        }
+
+        function mostrarTurnos() {
+            var tipo = document.querySelector('input[name="estudio"]:checked').value;
+            if (tipo === 'con_contraste') {
+                document.getElementById('turno_contraste').style.display = 'block';
+                document.getElementById('turno_sin_contraste').style.display = 'none';
+            } else {
+                document.getElementById('turno_sin_contraste').style.display = 'block';
+                document.getElementById('turno_contraste').style.display = 'none';
+            }
+        }
+
+        function mostrarMedicacion(opcion) {
+            document.getElementById('medicacionDetalle').style.display = (opcion.value === 'si') ? 'block' : 'none';
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Solicitud de Turno - Tomografía</h1>
+    <form method="POST" action="/">
+        <h3><label>Apellido:</label>
+        <input type="text" name="apellido" required><br><br></h3>
+
+        <h4><label>Nombre:</label>
+        <input type="text" name="nombre" required><br><br></4>
+
+        <h5><label>Documento:</label>
+        <input type="text" name="documento" pattern="\d{8}" maxlength="8" placeholder="DNI SIN PUNTO" required oninput= this.value.replace(/[^0-9]/g)/><br><br></h5>
+
+        <h6><label>¿Tiene obra social?</label><br>
+        <input type="radio" name="obra_social" value="si" onchange="mostrarObraSocial(this)" required> Sí<br>
+        <input type="radio" name="obra_social" value="no" onchange="mostrarObraSocial(this)"> No<br>
+
+        <div id="obraSocialDetalle" style="display:none;">
+            <label>¿Cuál?</label>
+            <input type="text" name="detalle_obra_social"><br><br>
+        </div></h6>
+
+        <h7><label>Tipo de estudio:</label><br>
+        <input type="radio" name="estudio" value="con_contraste" onchange="mostrarTurnos()" required> Con contraste<br>
+        <input type="radio" name="estudio" value="sin_contraste" onchange="mostrarTurnos()"> Sin contraste<br></h7>
+
+        <div id="turno_contraste" style="display:none;">
+            <label>Seleccione horario (08:00 - 12:30):</label>
+            <input type="datetime-local" name="turno_contraste"><br><br>
+        </div>
+
+        <div id="turno_sin_contraste" style="display:none;">
+            <label>Seleccione horario (13:00 - 19:30):</label>
+            <input type="datetime-local" name="turno_sin_contraste"><br><br>
+        </div>
+
+        <div>
+            <h8><label>¿Toma medicación?</label><br>
+            <input type="radio" name="medicacion" value="si" onchange="mostrarMedicacion(this)" required> Sí<br>
+            <input type="radio" name="medicacion" value="no" onchange="mostrarMedicacion(this)"> No<br>
+        
+
+        <div id="medicacionDetalle" style="display:none;">
+            <label>¿Cuál?</label>
+            <input type="text" name="detalle_medicacion"><br><br></h8>
+        </div>
+
+        <div class="caja-cc">
+        <p><strong>ESTUDIOS CON CONTRASTE:</strong></p>
+            <ul>
+                <li>Ayuno 8 hs .</li>
+                <li>Hidratación previa.</li>
+                <li>Suspender en lo posible METFORMINA un dia antes.</li>
+            </ul>
+            </div>
+
+        <label><input type="checkbox" name="consentimiento" required> Consentimiento informado</label><br><br>
+
+
+        <span class="tipo-linea">CONFIRMAR ASISTENCIA 48 HORAS ANTES, GRACIAS.</span>
+    
+        <div>
+            <input type="submit" value="Enviar" class="boton-enviar">
+        </div>
+    </form>
+</body>
+</html>

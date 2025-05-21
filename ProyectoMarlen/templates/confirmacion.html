@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <link rel="stylesheet" href="{{ url_for('static', filename='conf.css') }}">
+    
+      <title>Turno Confirmado</title>
+
+   
+</head>
+<body>
+    <h2>¡Turno confirmado!</h2>
+    <form>
+    <h3>Gracias {{ datos['nombre'] }} {{ datos['apellido'] }} {{ datos['documento'] }}.</h3>
+
+    <h4>Turno:
+        {% if datos['estudio'] == 'con_contraste' %}
+            {{ datos['turno_contraste'] }}
+        {% else %}
+            {{ datos['turno_sin_contraste'] }}
+        {% endif %}</h4>
+    
+    <h5>Recordá:</h5>
+    <h6><ul>
+        <li> Traer estudios previos</li>
+        <li> Ultimo laboratorio realizado</li>
+        <li> CONFIRMAR AIATENCIA 48 HORAS ANTES</li>
+    </ul></h6>
+</form>
+</body>
+</html>
