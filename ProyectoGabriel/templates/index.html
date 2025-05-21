@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Monitor de A/A - Datacenter</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f5f5f5; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; background: white; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+        th { background: #eee; }
+        .alerta { color: red; margin-top: 20px; }
+        .ok { color: green; }
+        .controls { margin-top: 20px; }
+        .historial { margin-top: 30px; background: #fff; padding: 10px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>Monitor A/A - Datacenter</h1>
+
+    <div class="controls">
+        <label for="modo">Modo:</label>
+        <select id="modo" onchange="cambiarModo()">
+            <option value="automatico">Automático</option>
+            <option value="manual">Manual</option>
+        </select>
+
+        <label for="temp_deseada">Temp. Deseada:</label>
+        <input type="number" id="temp_deseada" value="24" onchange="cambiarTempDeseada()" step="0.5">
+
+        <label for="temp_max_offset">Valor Temp. MAX:</label>
+        <select id="temp_max_offset" onchange="cambiarTempMaxOffset()">
+            <option value="0">0</option>
+            <option value="0.5">+0,5</option>
+            <option value="1">+1</option>
+            <option value="2">+2</option>
+            <option value="2.5">+2,5</option>
+        </select>
+    </div>
+
+    <div>
+        <strong>Temperatura Ambiente:</strong> <span id="temp_ambiente">--</span> °C<br>
+        <strong>Aire en uso:</strong> <span id="aire_en_uso">--</span><br>
+        <strong>Turno restante:</strong> <span id="turno_restante">--</span>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Aire</th>
+                <th>Estado</th>
+                <th>Corriente (A)</th>
+                <th>Corriente OK</th>
+                <th>Temp. Salida</th>
+                <th>Salud</th>
+                <th>Control Manual</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Aire 1</td>
+                <td id="relay_1">--</td>
+                <td id="corriente_1">--</td>
+                <td id="corriente_ok_1">--</td>
+                <td id="temp_aire_1">--</td>
+                <td id="salud_1">--</td>
+                <td>
+                    <button onclick="controlarAire(1, true)">Encender</button>
+                    <button onclick="controlarAire(1, false)">Apagar</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Aire 2</td>
+                <td id="relay_2">--</td>
+                <td id="corriente_2">--</td>
+                <td id="corriente_ok_2">--</td>
+                <td id="temp_aire_2">--</td>
+                <td id="salud_2">--</td>
+                <td>
+                    <button onclick="controlarAire(2, true)">Encender</button>
+                    <button onclick="controlarAire(2, false)">Apagar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="alerta" id="alertas"></div>
+
+    <div class="historial">
+        <h2>Historial de eventos</h2>
+        <div id="historial" data-pagina="1">Cargando...</div>
+        <button onclick="cambiarPagina(-1)">⬅️ Anterior</button>
+        <button onclick="cambiarPagina(1)">Siguiente ➡️</button>
+        <button onclick="borrarHistorial()">🗑️ Borrar</button>
+        <button onclick="descargarHistorial()">📄 Descargar</button>
+    </div>
+
+    <script src="/static/script2.js"></script>
+</body>
+</html>
